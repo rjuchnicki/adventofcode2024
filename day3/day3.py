@@ -1,9 +1,10 @@
 import re
 
+
 def part1(data: str) -> int:
     res = 0
     for m in re.finditer(r"mul\((\d+),(\d+)\)", data):
-        res += (int(m[1]) * int(m[2]))
+        res += int(m[1]) * int(m[2])
 
     return res
 
@@ -17,7 +18,7 @@ def part2(data: str) -> int:
         elif m[0] == "don't()":
             enabled = False
         elif enabled:
-            res += (int(m[1]) * int(m[2]))
+            res += int(m[1]) * int(m[2])
 
     return res
 
