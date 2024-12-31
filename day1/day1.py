@@ -1,6 +1,6 @@
 from collections import Counter
 
-def part1(left: list[int], right: list[int]):
+def part1(left: list[int], right: list[int]) -> int:
     left.sort()
     right.sort()
 
@@ -11,7 +11,7 @@ def part1(left: list[int], right: list[int]):
     return total
 
 
-def part2(left: list[int], right: list[int]):
+def part2(left: list[int], right: list[int]) -> int:
     counts = Counter(right)
 
     total = 0
