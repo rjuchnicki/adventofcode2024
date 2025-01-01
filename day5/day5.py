@@ -33,11 +33,13 @@ EXAMPLE_DATA: str = """
 """
 
 
-def parse_input_part1(data: str) -> tuple[defaultdict[list], list[list[str]]]:
+def parse_input_part1(
+    data: str,
+) -> tuple[defaultdict[str, list[str]], list[list[str]]]:
     split_input = data.split("\n\n")
 
     dependencies = split_input[0].strip().split("\n")
-    dependency_map = defaultdict(list)
+    dependency_map: defaultdict[str, list[str]] = defaultdict(list)
     for dep in dependencies:
         before, after = dep.split("|")
         dependency_map[before].append(after)
@@ -53,7 +55,7 @@ def parse_input_part2(
     split_input = data.split("\n\n")
 
     dependencies = split_input[0].strip().split("\n")
-    dependency_set = set()
+    dependency_set: set[tuple[str, str]] = set()
     for dep in dependencies:
         before, after = dep.split("|")
         dependency_set.add((before, after))
@@ -63,9 +65,11 @@ def parse_input_part2(
     return dependency_set, updates
 
 
-def is_valid(update: list[str], dependencies: defaultdict[list]) -> bool:
+def is_valid(
+    update: list[str], dependencies: defaultdict[str, list[str]]
+) -> bool:
     valid = True
-    pages_produced = set()
+    pages_produced: set[str] = set()
     for page in update:
         if not valid:
             break
@@ -80,7 +84,9 @@ def is_valid(update: list[str], dependencies: defaultdict[list]) -> bool:
     return valid
 
 
-def part1(dependencies: defaultdict[set], updates: list[list[str]]) -> int:
+def part1(
+    dependencies: defaultdict[str, list[str]], updates: list[list[str]]
+) -> int:
     res = 0
     for update in updates:
         if is_valid(update, dependencies):

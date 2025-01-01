@@ -63,7 +63,7 @@ def part2(grid: list[str]) -> int:
 
             valid = True
             for corner_pair in DIAGONAL_CORNER_PAIRS:
-                corner_chars = set()
+                corner_chars: set[str] = set()
                 for di, dj in corner_pair:
                     new_i = i + di
                     new_j = j + dj
